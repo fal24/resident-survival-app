@@ -11,17 +11,39 @@
       "Avoid >8 mEq/L correction/24h"
     ]
   },
+  [
   {
+    "slug": "dka",
     "title": "DKA",
     "category": "Endocrine Emergencies",
     "tlDr": "IV fluids, insulin, monitor AG and K+.",
-    "checklist": [
-      "IVF (NS or LR)",
-      "IV insulin drip",
-      "Monitor K+ and replete aggressively",
-      "Check AG, glucose, bicarb regularly",
-      "Transition to SC insulin when safe"
+    "sections": [
+      {
+        "heading": "Initial Workup",
+        "content": [
+          "BMP, VBG, serum ketones",
+          "Start NS or LR",
+          "Check K+ before insulin"
+        ]
+      },
+      {
+        "heading": "Insulin Protocol",
+        "content": [
+          "0.1 U/kg bolus then drip",
+          "Target AG closure before transitioning",
+          "Add dextrose once glucose <250"
+        ]
+      },
+      {
+        "heading": "When to Consult",
+        "content": [
+          "ICU for altered mental status, severe acidosis",
+          "Endo for recurrent DKA or unclear etiology"
+        ]
+      }
     ]
   }
+]
+
 ]
 
