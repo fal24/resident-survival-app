@@ -17,13 +17,18 @@ function Detail() {
       </Link>
 
       <h1 className="text-2xl font-bold mb-2">{mod.title}</h1>
-      <p className="text-gray-600 mb-4">{mod.tlDr}</p>
+      {mod.tlDr && <p className="text-gray-600 mb-4">{mod.tlDr}</p>}
 
-      <ul className="list-disc list-inside space-y-1 text-gray-800 text-sm">
-        {mod.checklist.map((item, idx) => (
-          <li key={idx}>{item}</li>
-        ))}
-      </ul>
+      {mod.sections.map((section, idx) => (
+        <div key={idx} className="mb-6">
+          <h2 className="text-lg font-semibold text-blue-800 mb-2">{section.heading}</h2>
+          <ul className="list-disc list-inside text-sm text-gray-800 space-y-1">
+            {section.content.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
