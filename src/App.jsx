@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import modules from "./data/modules.json";
 import { Link } from "react-router-dom";
-
-// inside map:
-<Link to={`/module/${mod.slug}`}>
-  <h2 className="text-lg font-semibold text-blue-700 hover:underline">{mod.title}</h2>
-</Link>
+import modules from "./data/modules.json";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,6 +12,7 @@ function App() {
   return (
     <div className="max-w-2xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Resident Survival Companion</h1>
+
       <input
         type="text"
         placeholder="Search modules..."
@@ -28,20 +24,23 @@ function App() {
       {filteredModules.length === 0 ? (
         <p className="text-gray-500">No matching modules found.</p>
       ) : (
-        filteredModules.map((mod, idx) => (
-          <div
-            key={idx}
-            className="bg-white rounded-xl p-4 shadow-md mb-4 border border-gray-200"
-          >
-            <h2 className="text-lg font-semibold text-blue-700">{mod.title}</h2>
-            <p className="text-sm text-gray-600 mb-2">{mod.tlDr}</p>
-            <ul className="list-disc list-inside text-sm text-gray-800">
-              {mod.checklist.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))
+        <ul className="space-y-3">
+          {filteredModules.map((mod) => (
+            <li key={mod.slug}>
+              <Link
+                to={`/module/${mod.slug}`}
+                className="block bg-white p-4 rounded shadow hover:bg-blue-50 transition"
+              >
+                <h2 className="text-lg font-semibold text-blue-700">
+                  {mod.title}
+                </h2>
+                {mod.tlDr && (
+                  <p className="text-sm text-gray-600 mt-1">{mod.tlDr}</p>
+                )}
+              </Link>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
