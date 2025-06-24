@@ -1,17 +1,23 @@
 [
-  {
-    "slug": "hyponatremia",
-    "title": "Hyponatremia",
-    "category": "Electrolytes",
-    "tlDr": "Volume status + serum/urine Osm and Na.",
-    "checklist": [
-      "Check serum and urine Osm",
-      "Assess volume status",
-      "If acute/symptomatic: hypertonic saline",
-      "Desmopressin clamp if needed",
-      "Avoid >8 mEq/L correction/24h"
-    ]
-  },
+ {
+  "slug": "hyponatremia",
+  "title": "Hyponatremia",
+  "category": "Electrolytes",
+  "tlDr": "Volume status + serum/urine Osm and Na.",
+  "sections": [
+    {
+      "heading": "Checklist",
+      "content": [
+        "Check serum and urine Osm",
+        "Assess volume status",
+        "If acute/symptomatic: hypertonic saline",
+        "Desmopressin clamp if needed",
+        "Avoid >8 mEq/L correction/24h"
+      ]
+    }
+  ]
+}
+
   {
     "slug": "dka",
     "title": "DKA",
