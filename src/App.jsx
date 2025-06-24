@@ -5,7 +5,7 @@ import modules from "./data/modules.json";
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filtered modules
+  // Filter by title
   const filteredModules = modules.filter((mod) =>
     mod.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -34,7 +34,9 @@ function App() {
       ) : (
         Object.entries(grouped).map(([category, items]) => (
           <div key={category} className="mb-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">{category}</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">
+              {category}
+            </h2>
             <ul className="space-y-2">
               {items.map((mod) => (
                 <li key={mod.slug}>
