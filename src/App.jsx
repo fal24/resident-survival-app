@@ -5,9 +5,9 @@ import modules from "./data/modules.json";
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredModules = modules.filter((mod) =>
-    mod.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+const filteredModules = modules.filter((mod) =>
+  mod.title?.toLowerCase().includes(searchQuery.toLowerCase())
+);
 
   const grouped = filteredModules.reduce((acc, mod) => {
     acc[mod.category] = acc[mod.category] || [];
