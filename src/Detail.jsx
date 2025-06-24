@@ -2,6 +2,17 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import modules from "./data/modules.json";
 
+<button
+  onClick={() => {
+    const allItems = mod.sections.flatMap(s => s.content).join('\\n');
+    navigator.clipboard.writeText(allItems);
+  }}
+  className="text-sm text-blue-600 hover:underline mb-4"
+>
+  📋 Copy Full Checklist
+</button>
+
+
 function Detail() {
   const { slug } = useParams();
   const mod = modules.find((m) => m.slug === slug);
