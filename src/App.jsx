@@ -1,58 +1,44 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import modules from "./data/modules.json";
 
-const modules = [
-  {
-    title: "Hyponatremia Management",
-    category: "Electrolytes",
-    tlDr: "Assess volume status. serum osmolality, urine Na and osmolality; treat based on underlying cause and acuity.",
-    checklist: [
-      "Check serum osm; urine osm, urine Na",
-      "Assess volume status (hypo/euvo/hyper)",
-      "If acute & symptomatic → hypertonic saline + desmopressin clamp",
-      "Avoid correcting >8 mEq/L in 24 hrs",
-      "Chronic → slow correction, address underlying cause"
-    ]
-  }
-];
-
-export default function App() {
-  const [search, setSearch] = useState("");
+function App() {
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredModules = modules.filter((mod) =>
-    mod.title.toLowerCase().includes(search.toLowerCase())
+    mod.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="max-w-2xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Resident Survival Companion</h1>
       <input
         type="text"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="mb-4 p-2 w-full border rounded"
+        placeholder="Search modules..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="w-full p-2 border border-gray-300 rounded mb-6"
       />
 
-      {filteredModules.map((mod, idx) => (
-        <div key={idx} className="mb-4 p-4 border rounded shadow">
-          <h2 className="font-semibold text-lg mb-1">{mod.title}</h2>
-          <p className="text-sm text-gray-500 mb-2">{mod.category}</p>
-          <p className="mb-2 text-sm">💡 {mod.tlDr}</p>
-          <ul className="list-disc ml-5 text-sm">
-            {mod.checklist.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {filteredModules.length === 0 ? (
+        <p className="text-gray-500">No matching modules found.</p>
+      ) : (
+        filteredModules.map((mod, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-xl p-4 shadow-md mb-4 border border-gray-200"
+          >
+            <h2 className="text-lg font-semibold text-blue-700">{mod.title}</h2>
+            <p className="text-sm text-gray-600 mb-2">{mod.tlDr}</p>
+            <ul className="list-disc list-inside text-sm text-gray-800">
+              {mod.checklist.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      )}
     </div>
   );
 }
 
-// Register service worker for PWA support (if in production)
-if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js").catch((regErr) => {
-      console.error("Service worker registration failed:", regErr);
-    });
-  });
-}
+export default App;
