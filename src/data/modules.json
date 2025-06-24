@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Hyponatremia",
+    "category": "Electrolytes",
+    "tlDr": "Volume status + serum/urine Osm and Na.",
+    "checklist": [
+      "Check serum and urine Osm",
+      "Assess volume status",
+      "If acute/symptomatic: hypertonic saline",
+      "Desmopressin clamp if needed",
+      "Avoid >8 mEq/L correction/24h"
+    ]
+  },
+  {
+    "title": "DKA",
+    "category": "Endocrine Emergencies",
+    "tlDr": "IV fluids, insulin, monitor AG and K+.",
+    "checklist": [
+      "IVF (NS or LR)",
+      "IV insulin drip",
+      "Monitor K+ and replete aggressively",
+      "Check AG, glucose, bicarb regularly",
+      "Transition to SC insulin when safe"
+    ]
+  }
+]
+
