@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import modules from "./data/modules.json";
+import { Link } from "react-router-dom";
+
+// inside map:
+<Link to={`/module/${mod.slug}`}>
+  <h2 className="text-lg font-semibold text-blue-700 hover:underline">{mod.title}</h2>
+</Link>
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
