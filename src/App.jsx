@@ -25,6 +25,7 @@ export default function App() {
   return (
     <div className="p-4 max-w-md mx-auto">
       <input
+        type="text"
         placeholder="Search..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -45,4 +46,13 @@ export default function App() {
       ))}
     </div>
   );
+}
+
+// Register service worker for PWA support (if in production)
+if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js").catch((regErr) => {
+      console.error("Service worker registration failed:", regErr);
+    });
+  });
 }
