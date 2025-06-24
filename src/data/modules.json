@@ -12,7 +12,6 @@
       "Avoid >8 mEq/L correction/24h"
     ]
   },
-  [
   {
     "slug": "dka",
     "title": "DKA",
@@ -45,6 +44,3 @@
     ]
   }
 ]
-
-]
-
