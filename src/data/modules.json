@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "hyponatremia",
+    "title": "Hyponatremia",
+    "category": "Electrolytes",
+    "tlDr": "Volume status + serum/urine Osm and Na.",
+    "checklist": [
+      "Check serum and urine Osm",
+      "Assess volume status",
+      "If acute/symptomatic: hypertonic saline",
+      "Desmopressin clamp if needed",
+      "Avoid >8 mEq/L correction/24h"
+    ]
+  },
+  [
+  {
+    "slug": "dka",
+    "title": "DKA",
+    "category": "Endocrine Emergencies",
+    "tlDr": "IV fluids, insulin, monitor AG and K+.",
+    "sections": [
+      {
+        "heading": "Initial Workup",
+        "content": [
+          "BMP, VBG, serum ketones",
+          "Start NS or LR",
+          "Check K+ before insulin"
+        ]
+      },
+      {
+        "heading": "Insulin Protocol",
+        "content": [
+          "0.1 U/kg bolus then drip",
+          "Target AG closure before transitioning",
+          "Add dextrose once glucose <250"
+        ]
+      },
+      {
+        "heading": "When to Consult",
+        "content": [
+          "ICU for altered mental status, severe acidosis",
+          "Endo for recurrent DKA or unclear etiology"
+        ]
+      }
+    ]
+  }
+]
+
+]
+

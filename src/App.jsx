@@ -1,58 +1,62 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import modules from "./data/modules.json";
 
-const modules = [
-  {
-    title: "Hyponatremia Management",
-    category: "Electrolytes",
-    tlDr: "Assess volume status. serum osmolality, urine Na and osmolality; treat based on underlying cause and acuity.",
-    checklist: [
-      "Check serum osm; urine osm, urine Na",
-      "Assess volume status (hypo/euvo/hyper)",
-      "If acute & symptomatic → hypertonic saline + desmopressin clamp",
-      "Avoid correcting >8 mEq/L in 24 hrs",
-      "Chronic → slow correction, address underlying cause"
-    ]
-  }
-];
+function App() {
+  const [searchQuery, setSearchQuery] = useState("");
 
-export default function App() {
-  const [search, setSearch] = useState("");
-
+  // Filtered modules
   const filteredModules = modules.filter((mod) =>
-    mod.title.toLowerCase().includes(search.toLowerCase())
+    mod.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Group by category
+  const grouped = filteredModules.reduce((acc, mod) => {
+    acc[mod.category] = acc[mod.category] || [];
+    acc[mod.category].push(mod);
+    return acc;
+  }, {});
+
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="max-w-2xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Resident Survival Companion</h1>
+
       <input
         type="text"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="mb-4 p-2 w-full border rounded"
+        placeholder="Search modules..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="w-full p-2 border border-gray-300 rounded mb-6"
       />
 
-      {filteredModules.map((mod, idx) => (
-        <div key={idx} className="mb-4 p-4 border rounded shadow">
-          <h2 className="font-semibold text-lg mb-1">{mod.title}</h2>
-          <p className="text-sm text-gray-500 mb-2">{mod.category}</p>
-          <p className="mb-2 text-sm">💡 {mod.tlDr}</p>
-          <ul className="list-disc ml-5 text-sm">
-            {mod.checklist.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {Object.keys(grouped).length === 0 ? (
+        <p className="text-gray-500">No matching modules found.</p>
+      ) : (
+        Object.entries(grouped).map(([category, items]) => (
+          <div key={category} className="mb-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">{category}</h2>
+            <ul className="space-y-2">
+              {items.map((mod) => (
+                <li key={mod.slug}>
+                  <Link
+                    to={`/module/${mod.slug}`}
+                    className="block bg-white p-4 rounded shadow hover:bg-blue-50 transition"
+                  >
+                    <h3 className="text-lg font-medium text-blue-700">
+                      {mod.title}
+                    </h3>
+                    {mod.tlDr && (
+                      <p className="text-sm text-gray-600 mt-1">{mod.tlDr}</p>
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      )}
     </div>
   );
 }
 
-// Register service worker for PWA support (if in production)
-if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js").catch((regErr) => {
-      console.error("Service worker registration failed:", regErr);
-    });
-  });
-}
+export default App;
